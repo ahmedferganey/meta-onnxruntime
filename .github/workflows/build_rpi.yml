@@ -4,11 +4,11 @@ name: Bitbake raspberrypi
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events but only for the styhead branch
   push:
-    branches: [ main ]
+    branches: [ styhead ]
   pull_request:
-    branches: [ main ]
+    branches: [ styhead ]
   schedule:
     - cron: '0 12 * * 5'
 
