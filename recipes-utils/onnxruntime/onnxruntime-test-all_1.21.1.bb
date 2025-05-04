@@ -13,6 +13,7 @@ SRCREV_onnxruntime = "8f7cce3a49fdbdac96e0868b75b7d0159db7ac7f"
 SRC_URI = " \
     git://github.com/microsoft/onnxruntime.git;name=onnxruntime;branch=rel-1.21.1;protocol=https \
     file://0001-arm64-force-mcpu-to-be-valid.patch \
+    file://0001-update-cxx-standard-23.patch \
 "
 
 S = "${WORKDIR}/git"

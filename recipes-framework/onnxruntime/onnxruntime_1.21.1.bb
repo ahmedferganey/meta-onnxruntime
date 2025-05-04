@@ -15,6 +15,7 @@ SRC_URI = " \
     file://0001-remove-onnxruntime_test.patch \
     file://0001-arm64-force-mcpu-to-be-valid.patch \
     file://0001-remove-numpy-dependency-from_cmake.patch \
+    file://0001-update-cxx-standard-23.patch \
 "
 
 S = "${WORKDIR}/git"
@@ -126,6 +127,7 @@ EXTRA_OECMAKE:append = " \
     -DCMAKE_CXX_FLAGS=-Wno-error=maybe-uninitialize \
     -DCMAKE_CXX_FLAGS=-Wno-error=array-bounds \
     -DCMAKE_CXX_FLAGS=-Wno-error=range-loop-construct \
+    -DCMAKE_CXX_FLAGS=-Wno-error=deprecated-enum-enum-conversion \
     -DCMAKE_TLS_VERIFY=ON -DFETCHCONTENT_QUIET=OFF \
     -Donnxruntime_ENABLE_MEMLEAK_CHECKER=OFF \
     -DCMAKE_BUILD_TYPE=Release \
