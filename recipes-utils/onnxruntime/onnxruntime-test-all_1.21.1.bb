@@ -8,11 +8,12 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=0f7e3b1308cb5c00b372a6e78835732d"
 BPV = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 DPV = "${@'.'.join(d.getVar('PV').split('.')[0:3])}"
 
-SRCREV_onnxruntime = "e0b66cad282043d4377cea5269083f17771b6dfc"
+SRCREV_onnxruntime = "8f7cce3a49fdbdac96e0868b75b7d0159db7ac7f"
 
 SRC_URI = " \
-    git://github.com/microsoft/onnxruntime.git;name=onnxruntime;branch=rel-1.21.0;protocol=https \
+    git://github.com/microsoft/onnxruntime.git;name=onnxruntime;branch=rel-1.21.1;protocol=https \
     file://0001-arm64-force-mcpu-to-be-valid.patch \
+    file://0001-update-cxx-standard-23.patch \
 "
 
 S = "${WORKDIR}/git"
