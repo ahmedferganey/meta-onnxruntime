@@ -117,7 +117,7 @@ EXTRA_OECMAKE:append = " \
     -DCMAKE_TLS_VERIFY=ON \
     -DFETCHCONTENT_QUIET=OFF \
     -Donnxruntime_ENABLE_MEMLEAK_CHECKER=OFF \
-    -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+    -DCMAKE_BUILD_TYPE=Release \
     -DCMAKE_PREFIX_PATH=${WORKDIR}/git/build/Linux/Release/installed \
     -DCMAKE_SYSTEM_PROCESSOR=${ONNXRUNTIME_TARGET_ARCH} \
     -DMLAS_SOURCE_IS_NOT_SET=OFF \
@@ -152,3 +152,4 @@ do_install() {
 FILES:${PN} += "${datadir}/onnxruntime/test/onnxruntime_test_all"
 FILES:${PN} += "${datadir}/onnxruntime/test/testdata/*"
 INSANE_SKIP:${PN} += "buildpaths"
+INSANE_SKIP:${PN}-dbg += "buildpaths"
