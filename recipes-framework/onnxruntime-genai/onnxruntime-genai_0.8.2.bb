@@ -24,7 +24,6 @@ DEPENDS += "\
     python3-wheel-native \
     nlohmann-json \
     onnxruntime \
-    onnxruntime-extensions \
     python3 \
 "
 
