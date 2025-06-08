@@ -25,6 +25,7 @@ DEPENDS += "\
     nlohmann-json \
     onnxruntime \
     python3 \
+    python3-pybind11 \
 "
 
 inherit cmake python3-dir
@@ -44,11 +45,11 @@ EXTRA_OECMAKE:append = " \
     -DUSE_GUIDANCE=OFF \
     -DENABLE_TESTS=OFF \
     -DORT_HOME=${RECIPE_SYSROOT}/usr \
-    -DPython_EXECUTABLE=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} \
     -DPYTHON_EXECUTABLE=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} \
+    -DPython_EXECUTABLE=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} \
     -DFETCHCONTENT_FULLY_DISCONNECTED=OFF \
-    -DCMAKE_SYSTEM_PROCESSOR=${OECORE_TARGET_ARCH} \
-"
+    -DPYTHON_MODULE_EXTENSION=.cpython-${@d.getVar('PYTHON_PN').replace('python', '').replace('.', '')}${@d.getVar('PYTHON_PN').replace('python', '').replace('.', '')}-${@d.getVar('TARGET_ARCH').replace('aarch64', 'aarch64-linux-gnu')}.so \
+ "
 
 do_configure[network] = "1"
 
@@ -59,16 +60,29 @@ do_install:append() {
     STAGING_LIBDIR=${STAGING_LIBDIR} \
     ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} -m pip install --disable-pip-version-check -v \
     -t ${D}/${PYTHON_SITEPACKAGES_DIR} --no-cache-dir --no-deps wheel/onnxruntime_genai-${DPV}-*.whl
-}
 
+    rm -f ${D}${PYTHON_SITEPACKAGES_DIR}/onnxruntime_genai/libonnxruntime-genai.so
+}
 
 FILES:${PN} += " \
     /usr/README.md \
     /usr/ThirdPartyNotices.txt \
     /usr/SECURITY.md \
     /usr/LICENSE \
-    ${libdir}/python3.*/site-packages/ \
+    ${PYTHON_SITEPACKAGES_DIR}/onnxruntime_genai-${DPV}.dist-info/* \
+    ${PYTHON_SITEPACKAGES_DIR}/onnxruntime_genai/*.py \
+    ${PYTHON_SITEPACKAGES_DIR}/onnxruntime_genai/LICENSE \
+    ${PYTHON_SITEPACKAGES_DIR}/onnxruntime_genai/ThirdPartyNotices.txt \
+    ${PYTHON_SITEPACKAGES_DIR}/onnxruntime_genai/models \
+    ${PYTHON_SITEPACKAGES_DIR}/onnxruntime_genai/__pycache__ \
+    ${PYTHON_SITEPACKAGES_DIR}/onnxruntime_genai/*.so \
+    ${libdir}/libonnxruntime-genai.so \
 "
 
-INSANE_SKIP:${PN} += "already-stripped buildpaths "
-INSANE_SKIP:${PN}-dev += "dev-elf "
+FILES:${PN}-dev = " \
+    ${includedir}/*.h \
+"
+
+
+INSANE_SKIP:${PN} += "buildpaths already-stripped"
+INSANE_SKIP:${PN}-dev += "dev-elf"
