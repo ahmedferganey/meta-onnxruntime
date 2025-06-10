@@ -16,6 +16,13 @@ SRC_URI = " \
     file://0001-update-cxx-standard-23.patch \
     file://0001-Fix-ambiguous-cpu_span-constructor-call.patch \
 "
+SRC_URI:append:riscv64 = " \
+    file://0001-add-riscv-architecture-global-variables.patch \
+"
+
+SRC_URI:append:riscv32 = " \
+    file://0001-add-riscv-architecture-global-variables.patch \
+"
 
 S = "${WORKDIR}/git"
 
