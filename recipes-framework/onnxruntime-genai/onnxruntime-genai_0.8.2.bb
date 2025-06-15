@@ -26,7 +26,7 @@ SRC_URI:append:riscv32 = " \
 
 S = "${WORKDIR}/git"
 
-DEPENDS += "\
+DEPENDS = "\
     python3-pip-native \
     python3-wheel-native \
     nlohmann-json \
@@ -35,11 +35,22 @@ DEPENDS += "\
     python3-pybind11 \
 "
 
+RDEPENDS:${PN} = " \
+    onnxruntime \
+    python3 \
+    python3-numpy \
+    python3-pybind11 \
+"
+
 inherit cmake python3-dir
 
 OECMAKE_SOURCEPATH = "${S}"
 
 ONNXRUNTIME_BUILD_DIR = "${WORKDIR}/build/"
+
+python() {
+    d.setVar("PYTHON_VERSION_ORT_GENAI", d.getVar("PYTHON_BASEVERSION").replace(".", "").replace(",", ""))
+}
 
 EXTRA_OECMAKE:append = " \
     -DCMAKE_BUILD_TYPE=Release \
@@ -55,7 +66,7 @@ EXTRA_OECMAKE:append = " \
     -DPYTHON_EXECUTABLE=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} \
     -DPython_EXECUTABLE=${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} \
     -DFETCHCONTENT_FULLY_DISCONNECTED=OFF \
-    -DPYTHON_MODULE_EXTENSION=.cpython-${@d.getVar('PYTHON_PN').replace('python', '').replace('.', '')}${@d.getVar('PYTHON_PN').replace('python', '').replace('.', '')}-${@d.getVar('TARGET_ARCH').replace('aarch64', 'aarch64-linux-gnu')}.so \
+    -DPYTHON_MODULE_EXTENSION=".cpython-${PYTHON_VERSION_ORT_GENAI}-${TARGET_ARCH}-linux-gnu.so" \
  "
 
 do_configure[network] = "1"
