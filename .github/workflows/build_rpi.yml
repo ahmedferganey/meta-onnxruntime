@@ -4,11 +4,11 @@ name: Bitbake raspberrypi
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events but only for the walnascar branch
   push:
-    branches: [ main ]
+    branches: [ walnascar ]
   pull_request:
-    branches: [ main ]
+    branches: [ walnascar ]
   schedule:
     - cron: '0 12 * * 5'
 
@@ -17,6 +17,7 @@ on:
 
 env:
   TARGET_VERSION: master
+  TARGET_RASPI_VERSION: master
   WORKING_DIR: /home/runner/work
   BUILD_DIR: /mnt/build
   DOWNLOAD_DIR: /mnt/build/downloads
@@ -69,7 +70,7 @@ jobs:
       - name: Clone poky, meta-raspberrypi, meta-openembedded
         run: |
           git clone --depth 1 -b ${TARGET_VERSION} git://git.yoctoproject.org/poky.git
-          git clone --depth 1 -b ${TARGET_VERSION} git://git.yoctoproject.org/meta-raspberrypi
+          git clone --depth 1 -b ${TARGET_RASPI_VERSION} git://git.yoctoproject.org/meta-raspberrypi
           git clone --depth 1 -b ${TARGET_VERSION} git://git.openembedded.org/meta-openembedded
         working-directory: ${{ env.WORKING_DIR }}
 

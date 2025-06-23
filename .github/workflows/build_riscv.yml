@@ -4,11 +4,11 @@ name: Bitbake qemuriscv
 
 # Controls when the workflow will run
 on:
-  # Triggers the workflow on push or pull request events but only for the main branch
+  # Triggers the workflow on push or pull request events but only for the walnascar branch
   push:
-    branches: [ main ]
+    branches: [ walnascar ]
   pull_request:
-    branches: [ main ]
+    branches: [ walnascar ]
   schedule:
     - cron: '0 12 * * 5'
 
@@ -16,7 +16,9 @@ on:
   workflow_dispatch:
 
 env:
-  TARGET_VERSION: master
+  TARGET_VERSION: walnascar
+  TARGET_BITBAKE_VERSION: 	2.14
+  TARGET_RISCV_VERSION: master
   WORKING_DIR: /home/runner/work
   BUILD_DIR: /mnt/build
   DOWNLOAD_DIR: /mnt/build/downloads
@@ -66,9 +68,9 @@ jobs:
       # checkout repository
       - name: Clone meta-riscv, openembedded-core, bitbake, meta-openembedded
         run: |
-          git clone --depth 1 -b ${TARGET_VERSION} https://github.com/riscv/meta-riscv.git
+          git clone --depth 1 -b ${TARGET_RISCV_VERSION} https://github.com/riscv/meta-riscv.git
           git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/openembedded-core.git
-          git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/bitbake.git
+          git clone --depth 1 -b ${TARGET_BITBAKE_VERSION} https://github.com/openembedded/bitbake.git
           git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/meta-openembedded.git
         working-directory: /home/runner/work
 
