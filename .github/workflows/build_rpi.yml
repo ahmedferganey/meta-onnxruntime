@@ -16,7 +16,7 @@ on:
   workflow_dispatch:
 
 env:
-  TARGET_VERSION: master
+  TARGET_VERSION: walnascar
   TARGET_RASPI_VERSION: master
   WORKING_DIR: /home/runner/work
   BUILD_DIR: /mnt/build
