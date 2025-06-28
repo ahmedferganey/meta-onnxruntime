@@ -16,6 +16,7 @@ SRC_URI = " \
     file://0001-arm64-force-mcpu-to-be-valid.patch \
     file://0001-remove-numpy-dependency-from_cmake.patch \
     file://0001-update-cxx-standard-23.patch \
+    file://0001-update-eigen-hash.patch \
 "
 
 DEPENDS += "\

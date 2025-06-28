@@ -43,7 +43,7 @@ RDEPENDS:${PN} = " \
 
 inherit cmake python3-dir
 
-OECMAKE_SOURCEPATH = "${WORKDIR}/git"
+OECMAKE_SOURCEPATH = "${S}"
 
 ONNXRUNTIME_BUILD_DIR = "${WORKDIR}/build/"
 
