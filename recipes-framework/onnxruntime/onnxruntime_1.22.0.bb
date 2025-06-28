@@ -18,8 +18,6 @@ SRC_URI = " \
     file://0001-update-cxx-standard-23.patch \
 "
 
-S = "${WORKDIR}/git"
-
 DEPENDS += "\
             python3-pip-native \
             python3-wheel-native \

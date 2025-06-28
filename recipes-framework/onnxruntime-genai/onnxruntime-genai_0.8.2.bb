@@ -25,8 +25,6 @@ SRC_URI:append:riscv32 = " \
     file://0001-add-riscv-architecture-global-variables.patch \
 "
 
-S = "${WORKDIR}/git"
-
 DEPENDS = "\
     python3-pip-native \
     python3-wheel-native \
@@ -45,7 +43,7 @@ RDEPENDS:${PN} = " \
 
 inherit cmake python3-dir
 
-OECMAKE_SOURCEPATH = "${S}"
+OECMAKE_SOURCEPATH = "${WORKDIR}/git"
 
 ONNXRUNTIME_BUILD_DIR = "${WORKDIR}/build/"
 

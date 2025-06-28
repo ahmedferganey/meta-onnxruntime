@@ -18,8 +18,6 @@ RDEPENDS:${PN} = " \
     onnxruntime-genai \
 "
 
-S = "${WORKDIR}/git"
-
 do_configure[network] = "1"
 
 do_configure:append() {

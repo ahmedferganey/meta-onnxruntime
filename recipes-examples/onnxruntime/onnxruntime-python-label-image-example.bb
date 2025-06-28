@@ -23,9 +23,6 @@ RDEPENDS:${PN} += " \
     onnxruntime \
     opencv \
 "
-
-S = "${WORKDIR}/git"
-
 do_install:append() {
     install -d ${D}${datadir}/onnxruntime/examples/python/
     install -d ${D}${datadir}/onnxruntime/examples/python/test_data
