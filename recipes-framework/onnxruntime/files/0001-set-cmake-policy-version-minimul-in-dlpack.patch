@@ -1,0 +1,13 @@
+Upstream-Status: Pending
+---
+diff --git a/cmake/external/onnxruntime_external_deps.cmake b/cmake/external/onnxruntime_external_deps.cmake
+index 0e0083af9ed..b66de27dc3b 100644
+--- a/cmake/external/onnxruntime_external_deps.cmake
++++ b/cmake/external/onnxruntime_external_deps.cmake
+@@ -599,6 +599,7 @@ if(onnxruntime_ENABLE_DLPACK)
+     EXCLUDE_FROM_ALL
+     FIND_PACKAGE_ARGS NAMES dlpack
+   )
++  set(CMAKE_POLICY_VERSION_MINIMUM 3.5)
+   onnxruntime_fetchcontent_makeavailable(dlpack)
+ endif()
