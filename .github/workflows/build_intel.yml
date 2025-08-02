@@ -67,9 +67,8 @@ jobs:
       - name: Clone meta-intel, openembedded-core, bitbake, meta-openembedded
         run: |
           git clone --depth 1 -b ${TARGET_VERSION} https://github.com/YoeDistro/meta-intel.git
+          git clone --depth 1 -b ${TARGET_VERSION} git://git.yoctoproject.org/poky.git
           git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/openembedded-core.git
-          git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/bitbake.git
-          git clone --depth 1 -b ${TARGET_VERSION} https://github.com/openembedded/meta-openembedded.git
         working-directory: /home/runner/work
 
       # Run bitbake
