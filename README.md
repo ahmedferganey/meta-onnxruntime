@@ -14,6 +14,7 @@ Please note that it is not official support.
 | :-- | :------ | :----------- |
 | [meta-raspberrypi](https://github.com/agherzan/meta-raspberrypi) | v1.22.1 | [![Bitbake raspberrypi](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_rpi.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_rpi.yml) |
 | [meta-riscv](https://github.com/riscv/meta-riscv)                | v1.22.1 | [![Bitbake riscv](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_riscv.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_riscv.yml) |
+| [meta-intel](https://github.com/YoeDistro/meta-intel)                | v1.22.1 | [![Bitbake intel](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_intel.yml/badge.svg?branch=main)](https://github.com/NobuoTsukamoto/meta-onnxruntime/actions/workflows/build_intel.yml) |
 
 ### matrix
 
@@ -25,6 +26,9 @@ Please note that it is not official support.
 |  | raspberrypi5 | OK |
 | [meta-riscv](https://github.com/riscv/meta-riscv) | qemueriscv32 | NG |
 |  | qemuriscv64 | OK |
+| [meta-intel](https://github.com/YoeDistro/meta-intel) | genericx86-64 | OK |
+|  | intel-corei7-64 | OK |
+|  |  intel-skylake-64 | OK |
 
 ## Available recipes
 - Framework
