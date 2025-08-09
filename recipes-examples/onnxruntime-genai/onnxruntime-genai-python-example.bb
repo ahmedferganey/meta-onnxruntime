@@ -7,7 +7,7 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=d4a904ca135bb7bc912156fee12726f0"
 SRCREV = "dc2d850790a61efcf7b5098144df90344ad19d6e"
 
 SRC_URI = " \
-    git://github.com/microsoft/onnxruntime-genai;branch=rel-0.8.3;protocol=https \
+    git://github.com/microsoft/onnxruntime-genai;branch=rel-0.9.0;protocol=https \
 "
 
 DEPENDS = "\

@@ -8,10 +8,10 @@ LIC_FILES_CHKSUM = "file://LICENSE;md5=d4a904ca135bb7bc912156fee12726f0"
 BPV = "${@'.'.join(d.getVar('PV').split('.')[0:2])}"
 DPV = "${@'.'.join(d.getVar('PV').split('.')[0:3])}"
 
-SRCREV = "dc2d850790a61efcf7b5098144df90344ad19d6e"
+SRCREV = "5ba9fce5b52452a82b12ac343d941765c430d996"
 
 SRC_URI = " \
-    git://github.com/microsoft/onnxruntime-genai;branch=rel-0.8.3;protocol=https \
+    git://github.com/microsoft/onnxruntime-genai;branch=rel-0.9.0;protocol=https \
     file://0001-set-ORT_HEADER_DIR-genai.patch \
     file://0001-update-cxx-standard-23.patch \
     file://0001-Fix-ambiguous-cpu_span-constructor-call.patch \
@@ -59,6 +59,7 @@ EXTRA_OECMAKE:append = " \
     -DUSE_DML=OFF \
     -DENABLE_JAVA=OFF \
     -DBUILD_WHEEL=ON \
+    -DENABLE_PYTHON=ON \
     -DUSE_GUIDANCE=OFF \
     -DENABLE_TESTS=OFF \
     -DORT_HOME=${RECIPE_SYSROOT}/usr \
@@ -69,6 +70,11 @@ EXTRA_OECMAKE:append = " \
  "
 
 do_configure[network] = "1"
+
+do_compile:append() {
+    cd ${WORKDIR}/build/wheel
+    ${STAGING_BINDIR_NATIVE}/${PYTHON_PN}-native/${PYTHON_PN} -m pip wheel --no-deps .
+}
 
 do_install:append() {
     install -d ${D}/${PYTHON_SITEPACKAGES_DIR}
@@ -99,7 +105,6 @@ FILES:${PN} += " \
 FILES:${PN}-dev = " \
     ${includedir}/*.h \
 "
-
 
 INSANE_SKIP:${PN} += "buildpaths already-stripped"
 INSANE_SKIP:${PN}-dev += "dev-elf"
